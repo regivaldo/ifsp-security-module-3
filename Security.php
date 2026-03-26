@@ -171,4 +171,8 @@ class Security {
     public function loginExiste(string $login): bool {
         return $this->userRepository->loginExiste($login);
     }
+
+    public function deletarUsuario(int $id): bool {
+        return $this->userRepository->deletar($id);
+    }
 }

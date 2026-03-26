@@ -35,6 +35,17 @@ try {
             require __DIR__ . '/pages/usuarios.php';
             break;
 
+        case '/deletar-usuario':
+            $security->exigirPapel('admin');
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && $security->validarCsrf()) {
+                $id = (int) ($_POST['id'] ?? 0);
+                if ($id > 0 && $id !== $security->getIdUsuario()) {
+                    $security->deletarUsuario($id);
+                }
+            }
+            header('Location: /administradores');
+            exit;
+
         case '/logout':
             $security->destruirSessao();
             header('Location: /login');

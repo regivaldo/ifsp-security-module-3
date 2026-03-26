@@ -85,6 +85,29 @@ class SecurityUserRepository {
      * @param string $login Login a ser verificado
      * @return bool true se o login já existe (ou em caso de erro), false se disponível
      */
+    /**
+     * Deleta um usuário pelo ID.
+     *
+     * Não permite deletar o próprio usuário logado (proteção feita na camada acima).
+     *
+     * - prepare(): cria consulta preparada com placeholder :id para prevenir SQL injection.
+     * - execute(): executa a consulta com o valor fornecido.
+     * - rowCount(): retorna o número de linhas afetadas pela operação.
+     *
+     * @param int $id ID do usuário a ser deletado
+     * @return bool true se deletou, false em caso de erro ou usuário inexistente
+     */
+    public function deletar(int $id): bool {
+        try {
+            $stmt = $this->db->prepare('DELETE FROM usuarios WHERE id = :id');
+            $stmt->execute([':id' => $id]);
+            return $stmt->rowCount() > 0;
+        } catch (\Throwable $e) {
+            error_log('Erro ao deletar usuário: ' . $e->getMessage());
+            return false;
+        }
+    }
+
     public function loginExiste(string $login): bool {
         try {
             $stmt = $this->db->prepare('SELECT COUNT(*) as total FROM usuarios WHERE login = :login');

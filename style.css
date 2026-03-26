@@ -194,6 +194,12 @@ button:hover { opacity: .9; }
 }
 .tabela-usuarios tr:last-child td { border-bottom: none; }
 .tabela-usuarios tr:hover td { background: #fafafe; }
+.btn-deletar {
+    width: auto; padding: 6px 14px; background: #e74c3c;
+    color: #fff; border: none; border-radius: 6px; font-size: 12px;
+    font-weight: 600; cursor: pointer; transition: opacity .3s;
+}
+.btn-deletar:hover { opacity: .85; }
 
 @media (max-width: 640px) {
     .card-painel { flex-direction: column; }

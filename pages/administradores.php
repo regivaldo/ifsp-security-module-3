@@ -38,6 +38,7 @@ $usuarios = $security->listarUsuarios();
                         <th>Nome</th>
                         <th>Login</th>
                         <th>Último Acesso</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,15 @@ $usuarios = $security->listarUsuarios();
                         <td><?= $security->sanitizar($u['nome']) ?></td>
                         <td><?= $security->sanitizar($u['login']) ?></td>
                         <td><?= $u['ultimo_acesso'] ? date('d/m/Y H:i', strtotime($u['ultimo_acesso'])) : '—' ?></td>
+                        <td>
+                            <?php if ($u['id'] !== $security->getIdUsuario()): ?>
+                            <form method="POST" action="/deletar-usuario" onsubmit="return confirm('Deseja realmente deletar este usuário?')">
+                                <?= $security->campoCsrf() ?>
+                                <input type="hidden" name="id" value="<?= (int) $u['id'] ?>">
+                                <button type="submit" class="btn-deletar">Deletar</button>
+                            </form>
+                            <?php endif; ?>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

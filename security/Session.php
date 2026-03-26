@@ -9,7 +9,8 @@
  * - $_SESSION: superglobal nativa do PHP que armazena dados da sessão do usuário.
  * - session_*: família de funções nativas do PHP para manipulação de sessões.
  */
-class SecuritySession {
+class SecuritySession
+{
     private const SESSION_LIFETIME = 1800; // 30 minutos de inatividade
 
     /**
@@ -26,7 +27,8 @@ class SecuritySession {
      * - session_start(): função nativa do PHP que inicia ou retoma uma sessão.
      * - time(): função nativa do PHP que retorna o timestamp Unix atual (em segundos).
      */
-    public function init(): void {
+    public function init(): void
+    {
         if (session_status() === PHP_SESSION_ACTIVE) {
             return;
         }
@@ -41,6 +43,9 @@ class SecuritySession {
 
         # marca os cookies de sessão como HttpOnly para impedir acesso via JavaScript, mitigando ataques XSS
         ini_set('session.cookie_httponly', '1');
+
+        # marca os cookies de sessão como Secure para que só sejam enviados em conexões HTTPS
+        # ini_set('session.cookie_secure', '1'); # deve ser ligado quando usar HTTPs
 
         # define SameSite=Strict para que o cookie só seja enviado em requisições do mesmo site
         ini_set('session.cookie_samesite', 'Strict');
@@ -68,7 +73,8 @@ class SecuritySession {
      * - session_regenerate_id(): função nativa do PHP que gera um novo ID de sessão.
      *   O parâmetro true deleta o arquivo da sessão anterior.
      */
-    public function regenerar(): void {
+    public function regenerar(): void
+    {
         session_regenerate_id(true);
         $_SESSION['ultimo_acesso'] = time();
     }
@@ -84,13 +90,21 @@ class SecuritySession {
      * - session_name(): função nativa do PHP que retorna o nome do cookie de sessão (ex: PHPSESSID).
      * - session_destroy(): função nativa do PHP que destrói todos os dados da sessão no servidor.
      */
-    public function destruir(): void {
+    public function destruir(): void
+    {
         $_SESSION = [];
 
         if (ini_get('session.use_cookies')) {
             $p = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $p['path'], $p['domain'], $p['secure'], $p['httponly']);
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $p['path'],
+                $p['domain'],
+                $p['secure'],
+                $p['httponly']
+            );
         }
 
         session_destroy();
