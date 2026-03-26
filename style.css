@@ -1,0 +1,210 @@
+/* ── Reset ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── Base ── */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+}
+
+/* ── Variante de fundo para página de usuários comuns ── */
+body.bg-usuarios {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+}
+
+/* ── Container principal ── */
+.container {
+    background: #fff; padding: 40px; border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2); width: 100%; max-width: 400px;
+}
+.container--medio { max-width: 440px; }
+.container--largo { max-width: 500px; padding: 50px; text-align: center; }
+
+/* ── Tipografia ── */
+h1 { text-align: center; color: #333; margin-bottom: 30px; font-size: 24px; }
+h1.mb-sm { margin-bottom: 8px; }
+h1.mb-md { margin-bottom: 12px; }
+h1.fs-md { font-size: 22px; }
+.subtitle { text-align: center; color: #888; margin-bottom: 25px; font-size: 14px; }
+.usuario  { color: #888; margin-bottom: 30px; font-size: 14px; }
+
+/* ── Formulários ── */
+.form-group { margin-bottom: 20px; }
+label { display: block; margin-bottom: 6px; color: #555; font-weight: 600; font-size: 14px; }
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0;
+    border-radius: 8px; font-size: 15px; transition: border-color .3s;
+    background: #fff;
+}
+input:focus, select:focus { outline: none; border-color: #667eea; }
+
+button {
+    width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff; border: none; border-radius: 8px; font-size: 16px;
+    font-weight: 600; cursor: pointer; transition: opacity .3s;
+}
+button:hover { opacity: .9; }
+
+/* ── Mensagens ── */
+.erro {
+    background: #fee; color: #c00; padding: 12px; border-radius: 8px;
+    margin-bottom: 20px; text-align: center; font-size: 14px;
+    border: 1px solid #fcc;
+}
+.sucesso {
+    background: #efe; color: #070; padding: 12px; border-radius: 8px;
+    margin-bottom: 20px; text-align: center; font-size: 14px;
+    border: 1px solid #cfc;
+}
+.mensagem {
+    background: #f0f0ff; color: #444; padding: 20px; border-radius: 8px;
+    margin-bottom: 30px; font-size: 16px; line-height: 1.5;
+    border: 1px solid #dde;
+}
+.mensagem--verde {
+    background: #f0fff0;
+    border-color: #cec;
+}
+
+/* ── Navegação ── */
+.nav {
+    display: flex; justify-content: center; gap: 16px;
+    margin-top: 20px; font-size: 14px;
+}
+.nav a {
+    display: inline-block; padding: 12px 24px; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 14px;
+    transition: opacity .3s;
+}
+.nav a:hover { opacity: .85; }
+.nav--links a { color: #667eea; padding: 0; }
+.nav--links a:hover { text-decoration: underline; }
+
+/* ── Botões de ação ── */
+.btn-cadastro { background: #667eea; color: #fff; }
+.btn-sair {
+    display: inline-block; padding: 14px 40px; background: #e74c3c;
+    color: #fff; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 14px; transition: opacity .3s;
+}
+.btn-sair:hover { opacity: .85; }
+
+/* ── Form card (cadastro) ── */
+.form-card {
+    width: 100%; max-width: 440px;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+}
+.form-card__cabecalho {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff; padding: 24px 40px;
+    font-size: 20px; font-weight: 700; text-align: center;
+}
+.form-card__corpo {
+    background: #fff; padding: 32px 40px;
+}
+.form-card__rodape {
+    background: #f7f7fa; padding: 16px 40px; text-align: center;
+    border-top: 1px solid #eee;
+}
+.form-card__rodape a {
+    color: #667eea; text-decoration: none; font-weight: 600; font-size: 14px;
+}
+.form-card__rodape a:hover { text-decoration: underline; }
+
+/* ── Alerta informativo ── */
+.alerta-info {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px;
+    padding: 16px 20px; color: #6d5c00; font-size: 15px; line-height: 1.5;
+}
+.alerta-info__icone {
+    flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px;
+}
+
+/* ── Card painel (áreas logadas) ── */
+.card-painel {
+    display: flex; max-width: 800px; width: 100%;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+}
+.card-painel__esquerda {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 30px; min-width: 220px; color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    text-align: center; gap: 6px;
+}
+.card-painel__esquerda--verde {
+    background: linear-gradient(135deg, #1b8a4a 0%, #0d7346 100%);
+}
+.card-painel__avatar {
+    width: 80px; height: 80px; margin-bottom: 8px;
+    border-radius: 50%; object-fit: cover;
+    border: 3px solid rgba(255,255,255,.6);
+}
+.card-painel__nome {
+    font-size: 18px; font-weight: 700;
+}
+.card-painel__login {
+    font-size: 13px; opacity: .85;
+}
+.card-painel__logout {
+    display: inline-block; margin-top: 18px; padding: 10px 28px;
+    background: #e74c3c; color: #fff; border-radius: 8px;
+    text-decoration: none; font-weight: 600; font-size: 13px;
+    transition: opacity .3s;
+}
+.card-painel__logout:hover { opacity: .85; }
+.card-painel__direita {
+    flex: 1; background: #fff; padding: 40px;
+    display: flex; flex-direction: column;
+}
+.card-painel__titulo {
+    font-size: 22px; color: #333; margin-bottom: 24px;
+}
+.card-painel__texto {
+    color: #555; font-size: 15px; line-height: 1.6;
+}
+.card-painel__acoes {
+    margin-bottom: 20px;
+}
+.card-painel__acoes a {
+    display: inline-block; padding: 10px 20px; background: #667eea;
+    color: #fff; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 13px; transition: opacity .3s;
+}
+.card-painel__acoes a:hover { opacity: .85; }
+
+/* ── Tabela de usuários ── */
+.tabela-usuarios {
+    width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.tabela-usuarios th {
+    text-align: left; padding: 10px 12px; border-bottom: 2px solid #e0e0e0;
+    color: #555; font-weight: 600; font-size: 12px; text-transform: uppercase;
+    letter-spacing: .5px;
+}
+.tabela-usuarios td {
+    padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #444;
+}
+.tabela-usuarios tr:last-child td { border-bottom: none; }
+.tabela-usuarios tr:hover td { background: #fafafe; }
+
+@media (max-width: 640px) {
+    .card-painel { flex-direction: column; }
+    .card-painel__esquerda { min-width: auto; padding: 30px 20px; }
+    .card-painel__direita { padding: 24px; }
+}
+
+/* ── Página 404 / Erro ── */
+body.bg-erro { background: #f5f5f5; }
+.box {
+    background: #fff; padding: 40px; border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1); text-align: center;
+}
+.box a { color: #3b82f6; }
